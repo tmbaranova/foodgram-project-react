@@ -14,15 +14,17 @@ router.register("recipes", views.RecipeViewSet, basename="recipe")
 
 urlpatterns = [
     path("users/<int:author_id>/subscribe/",
-         SubscribeViewSet.as_view(),
+         SubscribeViewSet.as_view({"get": "create", "delete": "destroy"}),
          name="subscribe"),
-    path("users/subscriptions/", SubscribeViewSet.as_view(),
+    path("users/subscriptions/", SubscribeViewSet.as_view({"get": "list"}),
          name="subscriptions"),
     path("recipes/<int:recipe_id>/favorite/",
-         views.FavoriteViewSet.as_view(),
+         views.FavoriteViewSet.as_view(
+             {"get": "create", "delete": "destroy"}),
          name="favorite"),
     path("recipes/<int:recipe_id>/shopping_cart/",
-         views.ShoppingCartViewSet.as_view(),
+         views.ShoppingCartViewSet.as_view(
+             {"get": "create", "delete": "destroy"}),
          name="shopping_cart"),
     path("recipes/download_shopping_cart/",
          views.download_shopping_cart, name="download"),
