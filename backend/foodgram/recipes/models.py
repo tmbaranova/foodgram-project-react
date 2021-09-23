@@ -1,14 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.contrib.auth import get_user_model
-
 
 User = get_user_model()
 
 
 class Tag(models.Model):
-    name = models.CharField("Тег", max_length=200)
-    color = models.CharField("Цветовой HEX-код", max_length=200)
+    name = models.CharField("Тег", unique=True, max_length=200)
+    color = models.CharField("Цветовой HEX-код", unique=True, max_length=200)
     slug = models.SlugField("Slug", unique=True, max_length=200)
 
     class Meta:

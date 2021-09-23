@@ -1,23 +1,25 @@
+from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import (filters, mixins, viewsets, permissions)
+from rest_framework import filters, mixins, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from django.contrib.auth import get_user_model
 
-
-User = get_user_model()
-from .filters import RecipeFilter
 from foodgram.pagination import FoodgramPagination
+
+from .filters import RecipeFilter
 from .models import (Amount, Favorite, Ingredient, Recipe, ShoppingCart,
                      Subscribe, Tag)
 from .permissions import IsAuthor, SubscribePermission
 from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
                           IngredientSerializer, RecipeSerializer,
-                          ShoppingCartSerializer,
-                          SubscribeSerializer, TagSerializer)
+                          ShoppingCartSerializer, SubscribeSerializer,
+                          TagSerializer)
+
+
+User = get_user_model()
 
 
 class CustomViewSet(
@@ -146,6 +148,6 @@ def download_shopping_cart(request):
         response.write(f"{ingredient_name} ({ingredient_unit}): {sum} \n")
 
     response["Content-Type"] = "text/plain"
-    response["Content-Disposition"] = "attachment; \
-        filename='shopping_list.txt'"
+    response["Content-Disposition"] = ("attachment; "
+                                       "filename='shopping_list.txt'")
     return response

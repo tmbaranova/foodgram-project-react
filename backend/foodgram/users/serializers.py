@@ -1,12 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from djoser.serializers import UserSerializer
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+
 from recipes.models import Subscribe
 
-
 User = get_user_model()
-
 
 
 class CustomUserSerializer(UserSerializer):
