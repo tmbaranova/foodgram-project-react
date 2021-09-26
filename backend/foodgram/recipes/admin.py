@@ -5,21 +5,21 @@ from .models import (Amount, Favorite, Ingredient, Recipe, ShoppingCart,
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ("name", "author", "followers")
-    list_filter = ("author", "name", "tags__name")
+    list_display = ('name', 'author', 'followers')
+    list_filter = ('author', 'name', 'tags__name')
 
     def followers(self, obj):
         return obj.favorite_recipe.all().count()
-    followers.short_description = "Добавлен в избранное"
+    followers.short_description = 'Добавлен в избранное'
 
 
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ("name", "measurement_unit")
-    list_filter = ("name",)
+    list_display = ('name', 'measurement_unit')
+    list_filter = ('name',)
 
 
 class AmountAmin(admin.ModelAdmin):
-    list_display = ("recipe", "ingredient", "amount")
+    list_display = ('recipe', 'ingredient', 'amount')
 
 
 admin.site.register(Ingredient, IngredientAdmin)
