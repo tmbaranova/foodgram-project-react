@@ -2,9 +2,7 @@ from django.core.paginator import Paginator
 from django.db.models import F
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-
 from users.serializers import CustomUserSerializer
-
 from .models import (Amount, Favorite, Ingredient, Recipe, ShoppingCart,
                      Subscribe, Tag)
 
@@ -105,7 +103,7 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
     def validate_ingredients(self, data):
         ingredients = self.initial_data.get('ingredients')
         ingredients_set = set()
-        if ingredients == []:
+        if not ingredients:
             raise serializers.ValidationError(
                 'Добавьте хотя бы один ингредиент')
         for ingredient in ingredients:
@@ -113,12 +111,12 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     'Количество ингредиента не может быть меньше 1.')
 
-            id = ingredient.get('id')
-            if id in ingredients_set:
+            ingredient_id = ingredient.get('id')
+            if ingredient_id in ingredients_set:
                 raise serializers.ValidationError(
                     'Ингредиент в списке должен быть уникальным.'
                 )
-            ingredients_set.add(id)
+            ingredients_set.add(ingredient_id)
 
         return data
 
