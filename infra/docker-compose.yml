@@ -17,7 +17,7 @@ services:
       - db
 
   backend:
-    image: tmb2508/foodgram:latest
+    image: tmb2508/foodgram
     restart: always
     volumes:
       - static_value:/code/static/
