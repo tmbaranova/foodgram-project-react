@@ -17,7 +17,7 @@ services:
       - ./.env 
   
   frontend:
-    image: tmb2508/foodgram-frontend
+    image: tmb2508/foodgram-frontend:latest
     volumes:
       - result_build:/app/result_build/build
     depends_on:

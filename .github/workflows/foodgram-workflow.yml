@@ -35,9 +35,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker pull tmb2508/foodgram:latest
             sudo docker-compose stop
-            sudo docker-compose rm foodgram
+            sudo docker-compose rm backend
+            sudo docker pull tmb2508/foodgram:latest
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
