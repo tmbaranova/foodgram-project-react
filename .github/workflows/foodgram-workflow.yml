@@ -34,11 +34,10 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          stack_file_name: docker-compose.yaml
           script: |
-            sudo docker pull tetradir/backend:latest
+            sudo docker pull tmb2508/foodgram:latest
             sudo docker-compose stop
-            sudo docker-compose rm backend
+            sudo docker-compose rm foodgram
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
