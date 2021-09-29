@@ -17,7 +17,7 @@ services:
       - db
 
   backend:
-    image: tmb2508/foodgram
+    image: tmb2508/foodgram:latest
     restart: always
     volumes:
       - static_value:/code/static/
@@ -26,18 +26,17 @@ services:
       - db
     env_file:
       - ./.env
-  
-  nginx: 
-    image: nginx:1.19.3 
-    restart: always 
-    volumes: 
+
+  nginx:
+    image: nginx:1.19.3
+    ports:
+      - "80:80"
+    volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-      - result_build:/usr/share/nginx/html/  
-      - static_value:/static 
+      - result_build:/usr/share/nginx/html/
+      - static_value:/static
       - media_value:/media
-      - ./docs:/usr/share/nginx/html/api/docs 
-    ports: 
-      - 80:80
+      - ./docs:/usr/share/nginx/html/api/docs
     depends_on: 
       - backend
       - frontend
