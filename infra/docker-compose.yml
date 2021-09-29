@@ -6,8 +6,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     restart: always
-      env_file:
-        - ./.env
+    env_file:
+      - ./.env
   
   frontend:
     image: tmb2508/foodgram-frontend:latest
