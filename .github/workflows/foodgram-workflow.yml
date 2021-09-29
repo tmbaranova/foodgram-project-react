@@ -21,7 +21,7 @@ jobs:
         with:
           push: true
           context: ./backend/foodgram/
-          tags: tetradir/backend:latest
+          tags: tmb2508/foodgram:latest
 
   deploy:
     runs-on: ubuntu-latest

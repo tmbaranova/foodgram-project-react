@@ -17,14 +17,14 @@ services:
       - ./.env 
   
   frontend:
-    image: tetradir/frontend
+    image: tmb2508/foodgram-frontend
     volumes:
       - result_build:/app/result_build/build
     depends_on:
       - db
 
   backend:
-    image: tetradir/backend:latest
+    image: tmb2508/foodgram:latest
     restart: always
     volumes:
       - static_value:/code/static/
