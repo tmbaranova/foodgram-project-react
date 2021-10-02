@@ -1,23 +1,30 @@
 version: '3.3' 
 
+volumes:
+  postgres_data:
+  static_value:
+  media_value:
+  result_build:
+
 services:
   db:
     image: postgres:12.4
+    container_name: postgresql
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     restart: always
     env_file:
       - ./.env
-  
+
   frontend:
-    image: tmb2508/foodgram-frontend:latest
+    image: tmb2508/foodgram-frontend
     volumes:
       - result_build:/app/result_build/build
     depends_on:
       - db
 
   backend:
-    image: tmb2508/foodgram:latest
+    image: tmb2508/backend:latest
     restart: always
     volumes:
       - static_value:/code/static/
@@ -29,20 +36,15 @@ services:
 
   nginx:
     image: nginx:1.19.3
-    ports:
-      - "80:80"
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
       - result_build:/usr/share/nginx/html/
       - static_value:/static
       - media_value:/media
       - ./docs:/usr/share/nginx/html/api/docs
-    depends_on: 
+    ports:
+      - 80:80
+    depends_on:
       - backend
       - frontend
-
-volumes:
-  postgres_data:
-  static_value:
-  media_value:
-  result_build:
