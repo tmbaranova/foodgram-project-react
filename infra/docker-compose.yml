@@ -35,7 +35,7 @@ services:
       - ./.env
 
   nginx:
-    image: nginx:1.19.3
+    image: nginx:1.20.1
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
