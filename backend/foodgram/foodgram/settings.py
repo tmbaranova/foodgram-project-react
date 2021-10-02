@@ -11,7 +11,7 @@ SECRET_KEY = 'h56$u)uq#=pf(hb&e@yxnou4k!#c-0hn%nu6*pd5yv=#5ond=6'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*', 'localhost', 'app', '84.201.176.160', 'web', 'web:8000'
+    '*', 'localhost', 'backend', '84.201.176.160', 'web', 'web:8000'
 ]
 
 INSTALLED_APPS = [
