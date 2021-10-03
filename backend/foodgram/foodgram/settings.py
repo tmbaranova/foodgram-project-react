@@ -8,10 +8,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', default='default')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    '*', 'localhost', 'backend', '84.201.176.160', 'web', 'web:8000'
+    '*', 'localhost', 'backend', '84.201.177.123', 'web', 'web:8000'
 ]
 
 INSTALLED_APPS = [
